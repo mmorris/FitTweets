@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys
+from datetime import date
 from rauth import OAuth1Session, oauth
 from FitbitAuth import *
 from TwitterAuth import *
@@ -16,9 +17,12 @@ def getYTDFloors():
                           fitbit_consumer_secret(),
 			  fitbit_oauth_token(),
 			  fitbit_oauth_secret())
-  url = base_url + api_version + "/user/-/activities/floors/date/2014-01-01/today.json"
+
+  jan_first_date = str(date.today().year) + "-01-01"
+  url = base_url + api_version + "/user/-/activities/floors/date/"+jan_first_date+"/today.json"
   r = session.get(url, params={}, header_auth=True)
 
+  # add values for each day
   total = 0
   d = r.json()["activities-floors"]
   for day in d:
