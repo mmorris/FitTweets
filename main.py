@@ -30,15 +30,6 @@ def get_floors_ytd():
   print "total: ", total
   return total
 
-def get_ytd_pace():
-  jan1 = date(date.today().year, 1, 1)
-  today = date.today()
-  delta = today - jan1
-
-  ytd_pace = (delta.days + 1) * 55
-
-  return ytd_pace
-
 def postTweet(messageBody):
   base_url = "https://api.twitter.com"
   api_version = "/1.1"
